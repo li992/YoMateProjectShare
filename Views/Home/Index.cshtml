@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div style="position:absolute;width:40%;top:30%;left:10%;text-align:center;text-anchor:middle;">
+        <h1 class="display-4">Welcome to YoMate</h1>
+        <p>A place that you can see and share your graduation project.</p>
+        <!-- Redirect function is invalid -->
+        <br />
+        <br />
+        <div style="position:relative">
+            <div style="width:45%;position:absolute;left:0">
+                <p>Are you a member already?</p>
+                <hr />
+                <a asp-area="" asp-action="Redirect">
+                    <button id="Start" type="button" class="btn btn-primary" value="Start" style="width:50%">
+                        Login Here
+                    </button>
+                </a>
+            </div>
+            <div style="width:10%;position:absolute;left:45%;top:20px"><h3>Or</h3></div>
+            <div style="width:45%;position:absolute;left:55%">
+                <p>Make an account in 2 mins!</p>
+                <hr />
+                <a asp-area="" asp-action="Redirect">
+                    <button id="Video" type="button" class="btn btn-primary" value="Register" style="width:50%">
+                        Register Here
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div style="position:absolute;width:40%;top:30%;right:10%;text-align:center;text-anchor:middle;">
+        <h1>logo</h1>
+    </div>
