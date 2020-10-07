@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using YoMateProjectShare.Areas.Identity.Data;
 
 namespace YoMateProjectShare.Data
 {
-    public class YoMateProjectShareDBContext : IdentityDbContext<IdentityUser>
+    public class YoMateProjectShareDBContext : IdentityDbContext<UserInfo>
     {
         public YoMateProjectShareDBContext(DbContextOptions<YoMateProjectShareDBContext> options)
             : base(options)

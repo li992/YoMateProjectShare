@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using YoMateProjectShare.Data;
+using YoMateProjectShare.Areas.Identity.Data;
 
 [assembly: HostingStartup(typeof(YoMateProjectShare.Areas.Identity.IdentityHostingStartup))]
 namespace YoMateProjectShare.Areas.Identity
@@ -19,7 +20,7 @@ namespace YoMateProjectShare.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("YoMateProjectShareDBContextConnection")));
 
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<UserInfo>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<YoMateProjectShareDBContext>();
             });
         }

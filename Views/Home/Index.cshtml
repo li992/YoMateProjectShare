@@ -3,9 +3,10 @@
 }
 
 @using Microsoft.AspNetCore.Identity
+@using YoMateProjectShare.Areas.Identity.Data;
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<UserInfo> SignInManager
+@inject UserManager<UserInfo> UserManager
 
 
 @if (SignInManager.IsSignedIn(User))

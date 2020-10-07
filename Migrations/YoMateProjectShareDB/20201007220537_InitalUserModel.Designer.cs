@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YoMateProjectShare.Data;
 
 namespace YoMateProjectShare.Migrations.YoMateProjectShareDB
 {
     [DbContext(typeof(YoMateProjectShareDBContext))]
-    partial class YoMateProjectShareDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201007220537_InitalUserModel")]
+    partial class InitalUserModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -10,8 +10,8 @@ using YoMateProjectShare.Data;
 namespace YoMateProjectShare.Migrations
 {
     [DbContext(typeof(YoMateProjectShareContext))]
-    [Migration("20201006203014_CreateIdentitySchema")]
-    partial class CreateIdentitySchema
+    [Migration("20201007220513_InitialProjectModel")]
+    partial class InitialProjectModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
