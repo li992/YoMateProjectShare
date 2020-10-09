@@ -374,3 +374,4 @@ E:\VS2019Source\YoMateProjectShare\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.
 E:\VS2019Source\YoMateProjectShare\obj\Debug\netcoreapp3.1\YoMateProjectShare.csproj.CoreCompileInputs.cache
 E:\VS2019Source\YoMateProjectShare\obj\Debug\netcoreapp3.1\YoMateProjectShare.MvcApplicationPartsAssemblyInfo.cs
 E:\VS2019Source\YoMateProjectShare\obj\Debug\netcoreapp3.1\YoMateProjectShare.MvcApplicationPartsAssemblyInfo.cache
+E:\VS2019Source\YoMateProjectShare\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_RightSideBarPartial.cshtml.g.cs
