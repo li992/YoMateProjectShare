@@ -17,11 +17,11 @@
                 <input asp-for="ArticleName" class="form-control" />
                 <span asp-validation-for="ArticleName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group" style="visibility:hidden">
                 <label asp-for="AuthorName" class="custom-control-label"></label>
-                <input asp-for="AuthorName" class="form-control" />
+                <input asp-for="AuthorName" class="form-control" value="@User.Identity.Name" />
                 <span asp-validation-for="AuthorName" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="UploadTime" class="custom-control-label"></label>
                 <input asp-for="UploadTime" class="form-control" />
@@ -32,6 +32,8 @@
                 <input asp-for="AbstractText" class="form-control" />
                 <span asp-validation-for="AbstractText" class="text-danger"></span>
             </div>
+            <input asp-for="AuthorName" class="form-control" type="hidden" value="@User.Identity.Name" />
+            <span asp-validation-for="AuthorName" class="text-danger"></span>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
