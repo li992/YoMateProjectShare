@@ -2,17 +2,31 @@
     ViewData["Title"] = "Home Page";
 }
 
+@using Microsoft.AspNetCore.Identity
+@using YoMateProjectShare.Areas.Identity.Data;
+
+@inject SignInManager<UserInfo> SignInManager
+@inject UserManager<UserInfo> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div style="position:absolute;width:30%;top:30%;left:20%;text-align:center;text-anchor:middle;">
+        <h1 class="display-4">Welcome back, @UserManager.GetUserName(User)!</h1>
+    </div>
+}
+else
+{
     <div style="position:absolute;width:30%;top:30%;left:20%;text-align:center;text-anchor:middle;">
         <h1 class="display-4">Welcome to YoMate</h1>
         <p>A place that you can see and share your graduation project.</p>
-        <!-- Redirect function is invalid -->
         <br />
         <br />
         <div style="position:relative">
             <div style="width:45%;position:absolute;left:0">
                 <p>Are you a member already?</p>
                 <hr />
-                <a asp-area="" asp-action="Redirect">
+                <a asp-area="Identity" asp-page="/Account/Login">
                     <button id="Start" type="button" class="btn btn-primary" value="Start" style="width:50%">
                         Login Here
                     </button>
@@ -22,7 +36,7 @@
             <div style="width:45%;position:absolute;left:55%">
                 <p>Make an account in 2 mins!</p>
                 <hr />
-                <a asp-area="" asp-action="Redirect">
+                <a asp-area="Identity" asp-page="/Account/Register">
                     <button id="Video" type="button" class="btn btn-primary" value="Register" style="width:50%">
                         Register Here
                     </button>
@@ -30,7 +44,41 @@
             </div>
         </div>
     </div>
+}
 
-    <div style="position:absolute;width:30%;top:30%;right:20%;text-align:center;text-anchor:middle;">
-        <h1>logo</h1>
+
+<div style="position:absolute;width:30%;top:30%;right:20%;text-align:center;text-anchor:middle;">
+    <img src="~/img/Color logo - no background.svg" alt="YoMate Logo" style="width:250px;height:auto"/>
+</div>
+
+@*<div style="position:absolute;width:100%;top:70%;left:20%">
+    <div class="container">
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-2">User</div>
+            <div class="col-4"><input type="text" id="userInput" /></div>
+        </div>
+        <div class="row">
+            <div class="col-2">Message</div>
+            <div class="col-4"><input type="text" id="messageInput" /></div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-6">
+                <input type="button" id="sendButton" value="Send Message" />
+            </div>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+    <script src="~/js/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+</div>*@

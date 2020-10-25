@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\VS2019Source\\YoMateProjectShare\\YoMateProjectShare.csproj": {}
+    "E:\\VS2019Source\\YoMateProjectShare\\YoMateProjectShare.csproj": {}
   },
   "projects": {
-    "D:\\VS2019Source\\YoMateProjectShare\\YoMateProjectShare.csproj": {
+    "E:\\VS2019Source\\YoMateProjectShare\\YoMateProjectShare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\VS2019Source\\YoMateProjectShare\\YoMateProjectShare.csproj",
+        "projectUniqueName": "E:\\VS2019Source\\YoMateProjectShare\\YoMateProjectShare.csproj",
         "projectName": "YoMateProjectShare",
-        "projectPath": "D:\\VS2019Source\\YoMateProjectShare\\YoMateProjectShare.csproj",
+        "projectPath": "E:\\VS2019Source\\YoMateProjectShare\\YoMateProjectShare.csproj",
         "packagesPath": "C:\\Users\\Qiaoyi\\.nuget\\packages\\",
-        "outputPath": "D:\\VS2019Source\\YoMateProjectShare\\obj\\",
+        "outputPath": "E:\\VS2019Source\\YoMateProjectShare\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Qiaoyi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,19 +38,43 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Client": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Core": {
+              "target": "Package",
+              "version": "[1.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.7, )"
+              "version": "[3.1.8, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.7, )"
+              "version": "[3.1.8, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.4, )"
+            },
+            "Npm": {
+              "target": "Package",
+              "version": "[3.5.2, )"
             }
           },
           "imports": [
@@ -71,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

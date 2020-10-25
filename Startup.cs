@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using YoMateProjectShare.Data;
 using Microsoft.EntityFrameworkCore;
+using YoMateProjectShare.Hubs;
 
 namespace YoMateProjectShare
 {
@@ -26,7 +27,8 @@ namespace YoMateProjectShare
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddSignalR();
+            services.AddRazorPages();
             services.AddDbContext<YoMateProjectShareContext>(options => options.UseSqlServer(Configuration.GetConnectionString("YoMateProjectShareDev")));
         }
 
@@ -36,6 +38,7 @@ namespace YoMateProjectShare
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -48,6 +51,7 @@ namespace YoMateProjectShare
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -55,6 +59,8 @@ namespace YoMateProjectShare
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>("/chathub");
+                endpoints.MapRazorPages();
             });
         }
     }

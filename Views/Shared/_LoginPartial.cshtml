@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using YoMateProjectShare.Areas.Identity.Data;
+
+@inject SignInManager<UserInfo> SignInManager
+@inject UserManager<UserInfo> UserManager
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <a id="leftNavControlBtn" class="nav-link text-dark" onclick="openNav()">Profile</a>
+    </li>
+}
+</ul>

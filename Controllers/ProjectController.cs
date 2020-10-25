@@ -17,9 +17,46 @@ namespace YoMateProjectShare.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
         {
-            return View(await _context.Projects.ToListAsync());
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentSort"] = sortOrder;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            var projectlist = from s in _context.Projects select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                projectlist = projectlist.Where(s => s.AuthorName.Contains(searchString)
+                                       || s.ArticleName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    projectlist = projectlist.OrderByDescending(s => s.AuthorName);
+                    break;
+                case "Date":
+                    projectlist = projectlist.OrderBy(s => s.UploadTime);
+                    break;
+                case "date_desc":
+                    projectlist = projectlist.OrderByDescending(s => s.UploadTime);
+                    break;
+                default:
+                    projectlist = projectlist.OrderBy(s => s.ArticleName);
+                    break;
+            }
+
+            int pageSize = 3;
+            return View(await PaginatedList<Projects>.CreateAsync(projectlist.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -116,6 +153,43 @@ namespace YoMateProjectShare.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+    }
+
+    public class PaginatedList<T> : List<T>
+    {
+        public int PageIndex { get; private set; }
+        public int TotalPages { get; private set; }
+
+        public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
+        {
+            PageIndex = pageIndex;
+            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+
+            this.AddRange(items);
+        }
+
+        public bool HasPreviousPage
+        {
+            get
+            {
+                return (PageIndex > 1);
+            }
+        }
+
+        public bool HasNextPage
+        {
+            get
+            {
+                return (PageIndex < TotalPages);
+            }
+        }
+
+        public static async Task<PaginatedList<T>> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize)
+        {
+            var count = await source.CountAsync();
+            var items = await source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            return new PaginatedList<T>(items, count, pageIndex, pageSize);
         }
     }
 }

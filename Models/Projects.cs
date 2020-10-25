@@ -27,6 +27,8 @@ namespace YoMateProjectShare.Models
 
 
         public string AbstractText { get; set; }
+
+        //public string FieldOfStudy { get; set; }
     }
     
     public class ProjectsDBContext : DbContext

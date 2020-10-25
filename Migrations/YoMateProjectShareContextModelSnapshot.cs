@@ -15,7 +15,7 @@ namespace YoMateProjectShare.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.7")
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -30,10 +30,12 @@ namespace YoMateProjectShare.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ArticleName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("AuthorName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(60)")
+                        .HasMaxLength(60);
 
                     b.Property<DateTime>("UploadTime")
                         .HasColumnType("datetime2");
