@@ -18,7 +18,7 @@ namespace YoMateProjectShare.Areas.Identity
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<YoMateProjectShareDBContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("YoMateProjectShareDBContextConnection")));
+                        context.Configuration.GetConnectionString("YoMateProDB")));
 
                 services.AddDefaultIdentity<UserInfo>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<YoMateProjectShareDBContext>();
