@@ -1,0 +1,74 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Home Page";
+}
+@using Microsoft.AspNetCore.Identity
+@using YoMateProjectShare.Areas.Identity.Data;
+@inject SignInManager<UserInfo> SignInManager
+@inject UserManager<UserInfo> UserManager
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .msg {
+        position: absolute;
+        top: 0;
+        bottom: 30px;
+        border: 1px solid green;
+        margin-bottom: auto;
+        display: block;
+        overflow: scroll;
+        width: 100%;
+        white-space: nowrap;
+    }
+</style>
+<div style="position:relative;height:400px;width:100%";>
+    <div class="msg">
+        <div id="msgs" style="position:relative; bottom:0;"></div>
+    </div>
+
+    <div style="position:absolute;height:20px;width:100%;left:0;bottom:0;display:block">
+        <input type="text" style="max-width:unset;width:100%;max-width:100%" id="MessageField" placeholder="type message and press enter" />
+    </div>
+</div>
+@section Scripts {
+    <script>
+    $(function () {
+        var userName = "@UserManager.GetUserName(User)";
+
+        var protocol = location.protocol === "https:" ? "wss:" : "ws:";
+            var wsUri = protocol + "//" + window.location.host;
+            var socket = new WebSocket(wsUri);
+            socket.onopen = e => {
+                console.log("socket opened", e);
+            };
+
+            socket.onclose = function (e) {
+                console.log("socket closed", e);
+            };
+
+            socket.onmessage = function (e) {
+                console.log(e);
+            $('#msgs').append(e.data + '<br />');
+            };
+
+            socket.onerror = function (e) {
+                console.error(e.data);
+            };
+
+        $('#MessageField').keypress(function (e) {
+                if (e.which != 13) {
+                    return;
+                }
+
+                e.preventDefault();
+
+                var message = userName + ": " + $('#MessageField').val();
+                socket.send(message);
+            $('#MessageField').val('');
+            });
+        });
+    </script>
+}
