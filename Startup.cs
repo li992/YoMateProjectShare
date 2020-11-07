@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using YoMateProjectShare.Data;
 using Microsoft.EntityFrameworkCore;
+using YoMateProjectShare.Data;
 using YoMateProjectShare.Hubs;
+
 
 namespace YoMateProjectShare
 {
@@ -46,6 +42,11 @@ namespace YoMateProjectShare
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            var serviceProvider = serviceScopeFactory.CreateScope().ServiceProvider;
+            app.UseWebSockets();
+            app.UseMiddleware<ChatWebSocketMiddleware>();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
