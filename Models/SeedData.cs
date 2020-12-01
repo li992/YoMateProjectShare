@@ -21,44 +21,49 @@ namespace YoMateProjectShare.Models
                 }
 
                 context.Projects.AddRange(
-                    new Projects
+                    new ScienceProjects
                     {
                         ArticleName = "Example 1",
                         AuthorName = "Example Author 1",
                         UploadTime = DateTime.Parse("2020-9-3"),
-                        AbstractText = "This is an example"
+                        AbstractText = "This is a Science major example",
+                        FieldOfStudy = "Science"
                     },
 
-                    new Projects
+                    new EngineeringProjects
                     {
                         ArticleName = "Example 2",
                         AuthorName = "Example Author 2",
                         UploadTime = DateTime.Parse("2020-9-2"),
-                        AbstractText = "This is an example"
+                        AbstractText = "This is an Engineering example",
+                        FieldOfStudy = "Engineering"
                     },
 
-                    new Projects
+                    new OtherProjects
                     {
                         ArticleName = "Example 3",
                         AuthorName = "Example Author 23",
                         UploadTime = DateTime.Parse("2020-9-1"),
-                        AbstractText = "This is an example"
+                        AbstractText = "This is a Other major example",
+                        FieldOfStudy = "Other"
                     },
 
-                    new Projects
+                    new OtherProjects
                     {
                         ArticleName = "Example 4",
                         AuthorName = "Example Author 4",
                         UploadTime = DateTime.Parse("2020-8-31"),
-                        AbstractText = "This is an example"
+                        AbstractText = "This is an example",
+                        FieldOfStudy = "Other"
                     },
 
-                    new Projects
+                    new OtherProjects
                     {
                         ArticleName = "Example 5",
                         AuthorName = "Example Author 5",
                         UploadTime = DateTime.Parse("2020-8-30"),
-                        AbstractText = "This is an example"
+                        AbstractText = "This is an example",
+                        FieldOfStudy = "Other"
                     }
                     );
                 context.SaveChanges();

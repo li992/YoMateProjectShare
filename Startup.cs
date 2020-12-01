@@ -6,7 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using YoMateProjectShare.Data;
 using YoMateProjectShare.Hubs;
-
+using Microsoft.AspNetCore.Identity.UI.Services;
+using YoMateProjectShare.Services;
 
 namespace YoMateProjectShare
 {
@@ -22,6 +23,8 @@ namespace YoMateProjectShare
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
             services.AddControllersWithViews();
             services.AddSignalR();
             services.AddRazorPages();

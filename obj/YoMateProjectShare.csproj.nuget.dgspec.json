@@ -75,6 +75,10 @@
             "Npm": {
               "target": "Package",
               "version": "[3.5.2, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.21.2, )"
             }
           },
           "imports": [
