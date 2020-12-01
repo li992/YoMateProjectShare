@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using YoMateProjectShare.Areas.Identity.Data;
 using YoMateProjectShare.Models;
+using YoMateProjectShare.Services;
 
 namespace YoMateProjectShare.Areas.Identity.Pages.Account
 {

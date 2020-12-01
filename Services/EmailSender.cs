@@ -25,7 +25,7 @@ namespace YoMateProjectShare.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("yomateprojectshare@gmail.com", Options.SendGridUser),
+                From = new EmailAddress("noreply@yomate.com", Options.SendGridUser),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
