@@ -25,7 +25,7 @@ namespace YoMateProjectShare.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("noreply@yomate.com", Options.SendGridUser),
+                From = new EmailAddress("yomateprojectshare@gmail.com", Options.SendGridUser),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
@@ -35,8 +35,10 @@ namespace YoMateProjectShare.Services
             // Disable click tracking.
             // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html
             msg.SetClickTracking(false, false);
+            var response = client.SendEmailAsync(msg);
 
-            return client.SendEmailAsync(msg);
+
+            return response;
         }
     }
 }

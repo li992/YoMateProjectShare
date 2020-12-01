@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using YoMateProjectShare.Areas.Identity.Data;
+using YoMateProjectShare.Services;
 
 namespace YoMateProjectShare.Areas.Identity.Pages.Account
 {
