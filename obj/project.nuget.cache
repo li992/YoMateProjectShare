@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wf/yOzJyoJUW2OF2RRlKb5lodf4R751bpZHwYRJTdzIIHkYqOsFLICT0ROgcH4kVJOTCukhn9uI8BrHyCQrSHQ==",
+  "dgSpecHash": "11qNggSdlwyHxwMA6mFiX2tQKWnoyYEaCl9o6qM6ef2xC2etdN8my1gCpFSpy7uLkfmMERvXXPzoucqt7k8Z8A==",
   "success": true,
   "projectFilePath": "E:\\VS2019Source\\YoMateProjectShare\\YoMateProjectShare.csproj",
   "expectedPackageFiles": [
@@ -99,6 +99,8 @@
     "C:\\Users\\Qiaoyi\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Qiaoyi\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Qiaoyi\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Qiaoyi\\.nuget\\packages\\sendgrid\\9.21.2\\sendgrid.9.21.2.nupkg.sha512",
+    "C:\\Users\\Qiaoyi\\.nuget\\packages\\starkbank-ecdsa\\1.2.0\\starkbank-ecdsa.1.2.0.nupkg.sha512",
     "C:\\Users\\Qiaoyi\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Qiaoyi\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\Qiaoyi\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

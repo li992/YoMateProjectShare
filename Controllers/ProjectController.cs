@@ -55,7 +55,38 @@ namespace YoMateProjectShare.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 10;
+            return View(await PaginatedList<Projects>.CreateAsync(projectlist.AsNoTracking(), pageNumber ?? 1, pageSize));
+        }
+
+        public async Task<IActionResult> MyProject(string sortOrder, int? pageNumber)
+        {
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["CurrentSort"] = sortOrder;
+
+
+            var projectlist = from s in _context.Projects select s;
+
+            projectlist = projectlist.Where(s => s.AuthorName.Contains(User.Identity.Name));
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    projectlist = projectlist.OrderByDescending(s => s.ArticleName);
+                    break;
+                case "Date":
+                    projectlist = projectlist.OrderBy(s => s.UploadTime);
+                    break;
+                case "date_desc":
+                    projectlist = projectlist.OrderByDescending(s => s.UploadTime);
+                    break;
+                default:
+                    projectlist = projectlist.OrderBy(s => s.ArticleName);
+                    break;
+            }
+
+            int pageSize = 10;
             return View(await PaginatedList<Projects>.CreateAsync(projectlist.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -83,7 +114,7 @@ namespace YoMateProjectShare.Controllers
             {
                 _context.Add(project);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(MyProject));
             }
             return View(project);
         }
@@ -123,7 +154,7 @@ namespace YoMateProjectShare.Controllers
                 {
                     throw;
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(MyProject));
             }
             return View(project);
         }
@@ -148,7 +179,7 @@ namespace YoMateProjectShare.Controllers
             var project = await _context.Projects.FindAsync(id);
             _context.Projects.Remove(project);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(MyProject));
         }
         public IActionResult Create()
         {
@@ -191,5 +222,7 @@ namespace YoMateProjectShare.Controllers
             var items = await source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
             return new PaginatedList<T>(items, count, pageIndex, pageSize);
         }
+
+
     }
 }

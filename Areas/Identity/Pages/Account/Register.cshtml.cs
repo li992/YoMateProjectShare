@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using YoMateProjectShare.Areas.Identity.Data;
+using YoMateProjectShare.Models;
 
 namespace YoMateProjectShare.Areas.Identity.Pages.Account
 {
@@ -48,8 +49,13 @@ namespace YoMateProjectShare.Areas.Identity.Pages.Account
         {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Full name")]
-            public string Name { get; set; }
+            [Display(Name = "First name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Last name")]
+            public string LastName { get; set; }
 
             [Required]
             [Display(Name = "Birth Date")]
@@ -86,10 +92,15 @@ namespace YoMateProjectShare.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new UserInfo {
-                    Name = Input.Name,
+                    Firstname = Input.FirstName,
+                    Lastname = Input.LastName,
                     DOB = Input.DOB,
-                    UserName = Input.Email, 
-                    Email = Input.Email 
+                    DateJoined = DateTime.Today,
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    Chats = { },
+                    Friends = { },
+                    Projects = { }
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

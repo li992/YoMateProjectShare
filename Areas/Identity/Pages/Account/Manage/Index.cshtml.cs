@@ -12,8 +12,8 @@ namespace YoMateProjectShare.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly UserManager<UserInfo> _userManager;
-        private readonly SignInManager<UserInfo> _signInManager;
+        private UserManager<UserInfo> _userManager;
+        private SignInManager<UserInfo> _signInManager;
 
         public IndexModel(
             UserManager<UserInfo> userManager,
@@ -35,12 +35,17 @@ namespace YoMateProjectShare.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Full name")]
-            public string Name { get; set; }
+            [Display(Name = "First name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Last name")]
+            public string LastName { get; set; }
 
             [Required]
             [Display(Name = "Birth Date")]
-            [DataType(DataType.Date)]
+            [DataType(DataType.DateTime)]
             public DateTime DOB { get; set; }
 
             [Phone]
@@ -57,7 +62,8 @@ namespace YoMateProjectShare.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                Name = user.Name,
+                LastName = user.Lastname,
+                FirstName = user.Firstname,
                 DOB = user.DOB,
                 PhoneNumber = phoneNumber
             };
@@ -99,7 +105,19 @@ namespace YoMateProjectShare.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
-
+            if (Input.FirstName != user.Firstname)
+            {
+                user.Firstname = Input.FirstName;
+            }
+            if (Input.LastName != user.Lastname)
+            {
+                user.Lastname = Input.LastName;
+            }
+            if (Input.DOB != user.DOB)
+            {
+                user.DOB = Input.DOB;
+            }
+            await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

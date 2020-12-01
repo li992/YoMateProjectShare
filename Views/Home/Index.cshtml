@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Identity;
 @using YoMateProjectShare.Areas.Identity.Data;
 
 @inject SignInManager<UserInfo> SignInManager
@@ -11,8 +11,9 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    var user = await UserManager.GetUserAsync(User);
     <div style="position:absolute;width:30%;top:30%;left:20%;text-align:center;text-anchor:middle;">
-        <h1 class="display-4">Welcome back, @UserManager.GetUserName(User)!</h1>
+        <h1 class="display-4">Welcome back, @user.Firstname!</h1>
     </div>
 }
 else
@@ -48,37 +49,37 @@ else
 
 
 <div style="position:absolute;width:30%;top:30%;right:20%;text-align:center;text-anchor:middle;">
-    <img src="~/img/Color logo - no background.svg" alt="YoMate Logo" style="width:250px;height:auto"/>
+    <img src="~/img/Color logo - no background.svg" alt="YoMate Logo" style="width:250px;height:auto" />
 </div>
 
 @*<div style="position:absolute;width:100%;top:70%;left:20%">
-    <div class="container">
-        <div class="row">&nbsp;</div>
-        <div class="row">
-            <div class="col-2">User</div>
-            <div class="col-4"><input type="text" id="userInput" /></div>
-        </div>
-        <div class="row">
-            <div class="col-2">Message</div>
-            <div class="col-4"><input type="text" id="messageInput" /></div>
-        </div>
-        <div class="row">&nbsp;</div>
-        <div class="row">
-            <div class="col-6">
-                <input type="button" id="sendButton" value="Send Message" />
+        <div class="container">
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-2">User</div>
+                <div class="col-4"><input type="text" id="userInput" /></div>
+            </div>
+            <div class="row">
+                <div class="col-2">Message</div>
+                <div class="col-4"><input type="text" id="messageInput" /></div>
+            </div>
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-6">
+                    <input type="button" id="sendButton" value="Send Message" />
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <hr />
+        <div class="row">
+            <div class="col-12">
+                <hr />
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <ul id="messagesList"></ul>
+        <div class="row">
+            <div class="col-6">
+                <ul id="messagesList"></ul>
+            </div>
         </div>
-    </div>
-    <script src="~/js/signalr.js"></script>
-    <script src="~/js/chat.js"></script>
-</div>*@
+        <script src="~/js/signalr.js"></script>
+        <script src="~/js/chat.js"></script>
+    </div>*@

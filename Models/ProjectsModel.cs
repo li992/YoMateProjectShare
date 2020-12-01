@@ -5,13 +5,17 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace YoMateProjectShare.Models
 {
-    public class Projects
+    public class ProjectList
     {
         public int Id { get; set; }
-
+        public List<ProjectList> projects { get; set; }
+    }
+    public class Projects : ProjectList
+    {
         [Display(Name = "Article")]
         [StringLength(200, MinimumLength = 3)]
         public string ArticleName { get; set; }
@@ -25,12 +29,26 @@ namespace YoMateProjectShare.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime UploadTime { get; set; }
 
-
         public string AbstractText { get; set; }
 
-        //public string FieldOfStudy { get; set; }
+        public string FieldOfStudy { get; set; }
     }
-    
+
+    public class ScienceProjects : Projects
+    {
+        public IFormFile File { get; set; }
+    }
+
+    public class EngineeringProjects : Projects
+    {
+        public IFormFile File { get; set; }
+    }
+
+    public class OtherProjects : Projects
+    {
+        public IFormFile File { get; set; }
+    }
+
     public class ProjectsDBContext : DbContext
     {
         public DbSet<Projects> projects { get; set; }

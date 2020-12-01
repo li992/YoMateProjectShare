@@ -10,8 +10,8 @@ using YoMateProjectShare.Data;
 namespace YoMateProjectShare.Migrations
 {
     [DbContext(typeof(YoMateProjectShareContext))]
-    [Migration("20201007220513_InitialProjectModel")]
-    partial class InitialProjectModel
+    [Migration("20201201043509_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,12 +21,32 @@ namespace YoMateProjectShare.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("YoMateProjectShare.Models.Projects", b =>
+            modelBuilder.Entity("YoMateProjectShare.Models.ProjectList", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProjectListId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectListId");
+
+                    b.ToTable("ProjectList");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("ProjectList");
+                });
+
+            modelBuilder.Entity("YoMateProjectShare.Models.Projects", b =>
+                {
+                    b.HasBaseType("YoMateProjectShare.Models.ProjectList");
 
                     b.Property<string>("AbstractText")
                         .HasColumnType("nvarchar(max)");
@@ -39,12 +59,20 @@ namespace YoMateProjectShare.Migrations
                         .HasColumnType("nvarchar(60)")
                         .HasMaxLength(60);
 
+                    b.Property<string>("FieldOfStudy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("UploadTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasDiscriminator().HasValue("Projects");
+                });
 
-                    b.ToTable("Projects");
+            modelBuilder.Entity("YoMateProjectShare.Models.ProjectList", b =>
+                {
+                    b.HasOne("YoMateProjectShare.Models.ProjectList", null)
+                        .WithMany("projects")
+                        .HasForeignKey("ProjectListId");
                 });
 #pragma warning restore 612, 618
         }

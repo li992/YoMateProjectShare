@@ -1,13 +1,13 @@
 ﻿<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 <ul>
     <li>
-        <a href="#">About</a>
+        <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
+    </li>
+    <li>
+        <a id="myproject" asp-area="" asp-controller="Project" asp-action="MyProject" title="myproject">MyProjects</a>
     </li>
     <li>
         <a href="#">Services</a>
-    </li>
-    <li>
-        <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
     </li>
     <li>
         <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
