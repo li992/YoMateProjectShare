@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20201201041205_ProjectModelChange.Designer.cs" />
     <Compile Remove="Migrations\20201202231127_modelChagne.cs" />
     <Compile Remove="Migrations\20201202231127_modelChagne.Designer.cs" />
+    <Compile Remove="Migrations\YoMateProjectShare\20201203030646_RoomAccessable.cs" />
+    <Compile Remove="Migrations\YoMateProjectShare\20201203030646_RoomAccessable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -17,5 +17,6 @@ namespace YoMateProjectShare.Data
         public DbSet<ChatHistory> ChatHistorys { get; set; }
         public DbSet<Chatroom> Chatrooms { get; set; }
         public DbSet<ChatList> ChatLists { get; set; }
+        public DbSet<roomAccessable> ChatAccessables { get; set; }
     }
 }

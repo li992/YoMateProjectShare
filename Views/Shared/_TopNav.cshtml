@@ -24,13 +24,19 @@
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" aria-selected="false" asp-area="" asp-controller="Project" asp-action="Index">Project</a>
+                            <a class="nav-link text-dark" aria-selected="false" asp-area="" asp-controller="Project" asp-action="Index">AllProjects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" aria-selected="false" asp-area="" asp-controller="Project" asp-action="MyProject">MyProjects</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" aria-selected="false" asp-area="" asp-controller="Messages" asp-action="Index">Chat</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" aria-selected="false" asp-area="" asp-controller="Friend" asp-action="Index">MyFriends</a>
+                        </li>
                     }
-                    </ul>
+                </ul>
             </div>
         </div>
     </nav>

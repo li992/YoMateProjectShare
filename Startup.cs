@@ -28,7 +28,11 @@ namespace YoMateProjectShare
             services.AddControllersWithViews();
             services.AddSignalR();
             services.AddRazorPages();
+#if (DEBUG == false)
             services.AddDbContext<YoMateProjectShareContext>(options => options.UseSqlServer(Configuration.GetConnectionString("YoMateProDB")));
+#else
+            services.AddDbContext<YoMateProjectShareContext>(options => options.UseSqlServer(Configuration.GetConnectionString("YoMateProjectShareDev")));
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

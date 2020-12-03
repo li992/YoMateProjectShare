@@ -383,3 +383,5 @@ E:\VS2019Source\YoMateProjectShare\obj\Debug\netcoreapp3.1\YoMateProjectShare.Mv
 E:\VS2019Source\YoMateProjectShare\obj\Debug\netcoreapp3.1\Razor\Views\Project\UserInfo.cshtml.g.cs
 E:\VS2019Source\YoMateProjectShare\obj\Debug\netcoreapp3.1\Razor\Views\Friend\Index.cshtml.g.cs
 E:\VS2019Source\YoMateProjectShare\obj\Debug\netcoreapp3.1\Razor\Views\Project\Addfriend.cshtml.g.cs
+E:\VS2019Source\YoMateProjectShare\obj\Debug\netcoreapp3.1\Razor\Views\Friend\_Chatbox.cshtml.g.cs
+E:\VS2019Source\YoMateProjectShare\obj\Debug\netcoreapp3.1\Razor\Views\Friend\_FriendList.cshtml.g.cs
