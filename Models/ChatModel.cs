@@ -17,8 +17,9 @@ namespace YoMateProjectShare.Models
 
     public class ChatHistory
     {
-        public string message;
-        public int userId;
-        public DateTime sendingTime;
+        public int Id { get; set; }
+        public string message { get; set; }
+        public int userId { get; set; }
+        public DateTime sendingTime { get; set; }
     }
 }

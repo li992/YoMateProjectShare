@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YoMateProjectShare.Data;
 
-namespace YoMateProjectShare.Migrations.YoMateProjectShareDB
+namespace YoMateProjectShare.Migrations
 {
     [DbContext(typeof(YoMateProjectShareDBContext))]
-    [Migration("20201201004515_SpecificUserDetials")]
-    partial class SpecificUserDetials
+    partial class YoMateProjectShareDBContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,9 +162,6 @@ namespace YoMateProjectShare.Migrations.YoMateProjectShareDB
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ChatsId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -186,9 +181,6 @@ namespace YoMateProjectShare.Migrations.YoMateProjectShareDB
 
                     b.Property<string>("Firstname")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("FriendsId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Lastname")
                         .HasColumnType("nvarchar(max)");
@@ -216,9 +208,6 @@ namespace YoMateProjectShare.Migrations.YoMateProjectShareDB
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ProjectsId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -231,10 +220,6 @@ namespace YoMateProjectShare.Migrations.YoMateProjectShareDB
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChatsId");
-
-                    b.HasIndex("FriendsId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -243,91 +228,7 @@ namespace YoMateProjectShare.Migrations.YoMateProjectShareDB
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("ProjectsId");
-
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("YoMateProjectShare.Models.ChatList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ChatListId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ChatListId");
-
-                    b.ToTable("ChatList");
-                });
-
-            modelBuilder.Entity("YoMateProjectShare.Models.FriendList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("FriendListId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FriendListId");
-
-                    b.ToTable("FriendList");
-                });
-
-            modelBuilder.Entity("YoMateProjectShare.Models.ProjectList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("leftChildId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("rightChildId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("leftChildId");
-
-                    b.HasIndex("rightChildId");
-
-                    b.ToTable("ProjectList");
-                });
-
-            modelBuilder.Entity("YoMateProjectShare.Models.Projects", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AbstractText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ArticleName")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("AuthorName")
-                        .HasColumnType("nvarchar(60)")
-                        .HasMaxLength(60);
-
-                    b.Property<DateTime>("UploadTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -379,46 +280,6 @@ namespace YoMateProjectShare.Migrations.YoMateProjectShareDB
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("YoMateProjectShare.Areas.Identity.Data.UserInfo", b =>
-                {
-                    b.HasOne("YoMateProjectShare.Models.ChatList", "Chats")
-                        .WithMany()
-                        .HasForeignKey("ChatsId");
-
-                    b.HasOne("YoMateProjectShare.Models.FriendList", "Friends")
-                        .WithMany()
-                        .HasForeignKey("FriendsId");
-
-                    b.HasOne("YoMateProjectShare.Models.ProjectList", "Projects")
-                        .WithMany()
-                        .HasForeignKey("ProjectsId");
-                });
-
-            modelBuilder.Entity("YoMateProjectShare.Models.ChatList", b =>
-                {
-                    b.HasOne("YoMateProjectShare.Models.ChatList", null)
-                        .WithMany("chatLists")
-                        .HasForeignKey("ChatListId");
-                });
-
-            modelBuilder.Entity("YoMateProjectShare.Models.FriendList", b =>
-                {
-                    b.HasOne("YoMateProjectShare.Models.FriendList", null)
-                        .WithMany("friendLists")
-                        .HasForeignKey("FriendListId");
-                });
-
-            modelBuilder.Entity("YoMateProjectShare.Models.ProjectList", b =>
-                {
-                    b.HasOne("YoMateProjectShare.Models.Projects", "leftChild")
-                        .WithMany()
-                        .HasForeignKey("leftChildId");
-
-                    b.HasOne("YoMateProjectShare.Models.ProjectList", "rightChild")
-                        .WithMany()
-                        .HasForeignKey("rightChildId");
                 });
 #pragma warning restore 612, 618
         }

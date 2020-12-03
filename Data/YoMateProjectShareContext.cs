@@ -4,7 +4,7 @@ using YoMateProjectShare.Models;
 
 namespace YoMateProjectShare.Data
 {
-    public class YoMateProjectShareContext:DbContext
+    public class YoMateProjectShareContext : DbContext
     {
         public YoMateProjectShareContext(DbContextOptions<YoMateProjectShareContext> options) : base(options)
         {
@@ -12,5 +12,10 @@ namespace YoMateProjectShare.Data
         }
 
         public DbSet<Projects> Projects { get; set; }
+        public DbSet<FriendList> FriendLists { get; set; }
+        public DbSet<Friend> Friends { get; set; }
+        public DbSet<ChatHistory> ChatHistorys { get; set; }
+        public DbSet<Chatroom> Chatrooms { get; set; }
+        public DbSet<ChatList> ChatLists { get; set; }
     }
 }

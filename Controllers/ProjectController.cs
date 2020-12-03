@@ -7,15 +7,19 @@ using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using YoMateProjectShare.Data;
 using YoMateProjectShare.Models;
+using Microsoft.AspNetCore.Identity;
+using YoMateProjectShare.Areas.Identity.Data;
 
 namespace YoMateProjectShare.Controllers
 {
     public class ProjectController : Controller
     {
         private readonly YoMateProjectShareContext _context;
-        public ProjectController(YoMateProjectShareContext context)
+        private readonly YoMateProjectShareDBContext _dbcontext;
+        public ProjectController(YoMateProjectShareContext context, YoMateProjectShareDBContext dbcontext)
         {
             _context = context;
+            _dbcontext = dbcontext;
         }
         public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
         {
@@ -90,6 +94,32 @@ namespace YoMateProjectShare.Controllers
             return View(await PaginatedList<Projects>.CreateAsync(projectlist.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
+        public async Task<IActionResult> AddFriend(string name)
+        {
+            UserInfo currentUser = await _dbcontext.Users.FirstOrDefaultAsync(s => s.UserName == User.Identity.Name);
+            UserInfo targetUser = await _dbcontext.Users.FirstOrDefaultAsync(a => a.UserName == name);
+            var rel = new Friend
+            {
+                belongtoId = currentUser.Id,
+                friendId = targetUser.Id,
+                friendNickname = targetUser.UserName,
+                addingTime = DateTime.Now
+            };
+            var rel2 = new Friend
+            {
+                belongtoId = targetUser.Id,
+                friendId = currentUser.Id,
+                friendNickname = currentUser.UserName,
+                addingTime = DateTime.Now
+            };
+
+            _context.Add(rel);
+            _context.Add(rel2);
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(MyProject));
+        }
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -104,6 +134,27 @@ namespace YoMateProjectShare.Controllers
             }
 
             return View(project);
+        }
+
+        public async Task<IActionResult> UserInfo(string name)
+        {
+            if(name == null)
+            {
+                return NotFound();
+            }
+            var um = await _dbcontext.Users.FirstOrDefaultAsync(s => s.UserName == name);
+
+            if (um == null){
+                um = new UserInfo
+                {
+                    UserName="User Not Found",
+                    Lastname="User Not Found",
+                    Firstname="User Not Found"
+                };
+            }
+
+
+            return View(um);
         }
 
         [HttpPost]
@@ -181,6 +232,7 @@ namespace YoMateProjectShare.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(MyProject));
         }
+
         public IActionResult Create()
         {
             return View();

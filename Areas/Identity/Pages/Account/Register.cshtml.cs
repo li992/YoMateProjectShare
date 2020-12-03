@@ -98,10 +98,7 @@ namespace YoMateProjectShare.Areas.Identity.Pages.Account
                     DOB = Input.DOB,
                     DateJoined = DateTime.Today,
                     UserName = Input.Email,
-                    Email = Input.Email,
-                    Chats = { },
-                    Friends = { },
-                    Projects = { }
+                    Email = Input.Email
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

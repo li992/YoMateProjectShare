@@ -9,13 +9,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace YoMateProjectShare.Models
 {
-    public class ProjectList
+    public class Projects
     {
         public int Id { get; set; }
-        public List<ProjectList> projects { get; set; }
-    }
-    public class Projects : ProjectList
-    {
         [Display(Name = "Article")]
         [StringLength(200, MinimumLength = 3)]
         public string ArticleName { get; set; }

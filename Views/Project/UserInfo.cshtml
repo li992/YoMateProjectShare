@@ -1,0 +1,53 @@
+﻿@model YoMateProjectShare.Areas.Identity.Data.UserInfo
+
+@{
+    ViewData["Title"] = "UserInfo";
+}
+
+@using Microsoft.AspNetCore.Identity;
+@using YoMateProjectShare.Areas.Identity.Data;
+
+@inject SignInManager<UserInfo> SignInManager
+@inject UserManager<UserInfo> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+var username = Model.UserName;
+<h1>User Info</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+        @if (username != User.Identity.Name && username!="User Not Found")
+        {
+        <dd>
+            @Html.ActionLink("Add Friend", "Addfriend", new { name = username })
+        </dd>}
+    </dl>
+</div>
+}
+else
+{
+    <div>You haven't log in, please login in first.</div>
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

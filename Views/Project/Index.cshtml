@@ -2,7 +2,12 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>this is project index page</h2>
+@using Microsoft.AspNetCore.Identity;
+@using YoMateProjectShare.Areas.Identity.Data;
+
+@inject SignInManager<UserInfo> SignInManager
+@inject UserManager<UserInfo> UserManager
+<h2>All Projects</h2>
 
 <div style="position:absolute;width:60%;left:20%;text-align:center;text-anchor:middle;">
 
@@ -12,7 +17,7 @@
                 <p>
                     Find by string: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
                     <input type="submit" value="Search" class="btn btn-default" /> |
-                    <a asp-action="Index">Back to Full List</a>
+                    <a asp-action="Index">Back to Default Order</a>
                 </p>
             </div>
         </form>
@@ -40,7 +45,6 @@
                 <!-- for loop creating -->
                 @foreach (var item in Model)
                 {
-
                     <tr>
                         <th scope="row">
                             @Html.DisplayFor(modelItem => item.Id)
@@ -49,7 +53,7 @@
                             @Html.DisplayFor(modelItem => item.ArticleName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.AuthorName)
+                            @Html.ActionLink(item.AuthorName, "UserInfo", new {name=item.AuthorName})
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.UploadTime)

@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20201201041205_ProjectModelChange.cs" />
     <Compile Remove="Migrations\20201201041205_ProjectModelChange.Designer.cs" />
+    <Compile Remove="Migrations\20201202231127_modelChagne.cs" />
+    <Compile Remove="Migrations\20201202231127_modelChagne.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

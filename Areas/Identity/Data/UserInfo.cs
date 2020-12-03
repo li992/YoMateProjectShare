@@ -20,14 +20,5 @@ namespace YoMateProjectShare.Areas.Identity.Data
 
         [PersonalData]
         public DateTime DateJoined { get; set; }
-
-        [PersonalData]
-        public ChatList Chats { get; set; }
-
-        [PersonalData]
-        public FriendList Friends { get; set; }
-
-        [PersonalData]
-        public ProjectList Projects { get; set; }
     }
 }
