@@ -37,6 +37,7 @@ namespace YoMateProjectShare.Controllers
             }
 
             var projectlist = from s in _context.Projects select s;
+            projectlist = projectlist.Where(s => s.AuthorName != User.Identity.Name);
             if (!String.IsNullOrEmpty(searchString))
             {
                 projectlist = projectlist.Where(s => s.AuthorName.Contains(searchString)

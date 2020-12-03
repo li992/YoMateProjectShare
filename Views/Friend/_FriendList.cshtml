@@ -22,7 +22,8 @@
                     @Html.DisplayFor(modelItem => item.friendNickname)
                 </th>
                 <td>
-                    @Html.ActionLink("Details","Index","Message", new { id = item.Id })
+                    @Html.ActionLink("Details", "UserDetail", new { name = item.friendNickname }) | 
+                    @Html.ActionLink("Delete", "Defriend", new { name = item.friendNickname })
                 </td>
             </tr>
         }

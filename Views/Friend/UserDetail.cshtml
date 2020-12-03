@@ -1,0 +1,83 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "UserDetail";
+}
+
+@using Microsoft.AspNetCore.Identity;
+@using YoMateProjectShare.Areas.Identity.Data;
+
+@inject SignInManager<UserInfo> SignInManager
+@inject UserManager<UserInfo> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    var username = Model.User.UserName;
+    <h1>User Info</h1>
+
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                Username
+            </dt>
+            <dd class="col-sm-10">
+                @Model.User.UserName
+            </dd>
+            <dt class="col-sm-2">
+                First Name
+            </dt>
+            <dd class="col-sm-10">
+                @Model.User.Firstname
+            </dd>
+            <dt class="col-sm-2">
+                Last Name
+            </dt>
+            <dd class="col-sm-10">
+                @Model.User.Lastname
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Article Name
+                    </th>
+                    <th>
+                        Upload Time
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- for loop creating -->
+                @foreach (var item in Model.Projects)
+                {
+
+                    <tr>
+                        <td>
+                            @item.ArticleName
+                        </td>
+                        <td>
+                            @item.UploadTime
+                        </td>
+                        <td>
+                            @Html.ActionLink("Project Details", "Details", "Project", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div>You haven't log in, please login in first.</div>
+}
+<div>
+    <a href='javascript:history.go(-1)'>Back</a>
+</div>
